@@ -45,21 +45,21 @@
                     <div ng-hide="hauler.residentia == 'Unfranchised'">
                       <h4>Residential</h4>
                       <ul class="list-unstyled">
-                        <li>{{ hauler.residentia }}</li>
+                        <li><strong>{{ hauler.residentia }}</strong></li>
                         <li><span class="glyphicon glyphicon-earphone"></span> {{ hauler.phone }}</li>
                       </ul>
                     </div>
                     <div ng-hide="hauler.commercial == 'Unfranchised'">
                       <h4>Commercial</h4>
                       <ul class="list-unstyled">
-                        <li>{{ hauler.commercial }}</li>
+                        <li><strong>{{ hauler.commercial }}</strong></li>
                         <li><span class="glyphicon glyphicon-earphone"></span> {{ hauler.comm_phone }}</li>
                       </ul>
                     </div>
                     <div ng-hide="hauler.dropbox == 'Unfranchised'">
                       <h4>Dropbox</h4>
                       <ul class="list-unstyled">
-                        <li>{{ hauler.dropbox }}</li>
+                        <li><strong>{{ hauler.dropbox }}</strong></li>
                         <li><span class="glyphicon glyphicon-earphone"></span> {{ hauler.dropbox_ph }}</li>
                       </ul>
                     </div>
@@ -76,7 +76,7 @@
     </div>
     <div id="footer">
       <div class="container">
-        <p class="pull-right">powered by data from civicapps</p>
+        <p class="pull-right">powered by data from <a href="http://civicapps.org">civicapps</a></p>
       </div>
     </div> 
     <!-- /container -->
