@@ -2,7 +2,7 @@
     "use strict";
 
     window.HaulerCtrl = function HaulerCtrl ($scope, $http) {
-        var map = L.mapbox.map('map', 'examples.map-9ijuk24y').setView([45.5, -122.5], 8);
+        var map = L.mapbox.map('map', 'eknuth.gmh51030').setView([45.5, -122.5], 8);
 
         var hauler_layer;
 
@@ -10,14 +10,17 @@
         $scope.error = false;
         var success = function(pos) {
             var url = 'http://civicapps.iknuth.com/data/hauler.geojson';
-            url = url + '?callback=JSON_CALLBACK&pip=' + [pos.coords.longitude, pos.coords.latitude].join(',');
+            url = url + '?callback=JSON_CALLBACK&pip=' + [
+                pos.coords.longitude,
+                pos.coords.latitude
+            ].join(',');
             $http.jsonp(url).success(function (d) {
                 $scope.haulers = _.map(d.features, function (hauler) {
                     return hauler.properties;
                 });
                 hauler_layer = L.geoJson(d).addTo(map);
                 hauler_layer.setStyle({
-                    color: '#006a32', //#006a32', f0ba48,
+                    color: '#f0ba48', //#006a32', f0ba48,
                     weight: 2
                 });
                 map.setView(hauler_layer.getBounds().getCenter(), 13, { animate: false });
