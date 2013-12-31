@@ -17,9 +17,10 @@
                 });
                 hauler_layer = L.geoJson(d).addTo(map);
                 hauler_layer.setStyle({
-                    color: '#006a32' //#006a32', f0ba48
+                    color: '#006a32', //#006a32', f0ba48,
+                    weight: 2
                 });
-                map.setView(hauler_layer.getBounds().getCenter(), 12);
+                map.setView(hauler_layer.getBounds().getCenter(), 13, { animate: false });
             });
         };
 
