@@ -17,45 +17,129 @@
     <div class="app-wrapper" ng-controller="TreesCtrl">
       <div class="container main-container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-6 col-sm-8 col-xs-12">
             <form ng-submit="search(searchTerm)">
               <div class="row">
-                <div class="col-md-9 input-box">
-                  <input type="search" class="form-control input-lg" ng-model="searchTerm" placeholder='Search (try "Giant sequoia")'>
+                <div class="col-md-10 col-sm-10 col-xs-10 input-box">
+                  <input type="search" class="form-control input-lg" ng-model="searchTerm" placeholder='Heritage Trees Search (try "Giant sequoia")'
+                  ng-keyup="search(searchTerm)">
                 </div>
-                <div class="col-md-3 btn-box">
+                <div class="col-md-2 col-sm-2 col-xs-2 btn-box">
                   <div class="btn-group">
-                    <a class="btn btn-default btn-lg">
+                    <!-- <a class="btn btn-default btn-lg">
                       <span class="glyphicon glyphicon-list-alt"></span>
-                    </a>
-                    <button type="submit" class="btn btn-primary btn-lg">
-                      <span class="glyphicon glyphicon-search"></span>
+                    </a> -->
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                      <span ng-click="showList = false" class="glyphicon glyphicon-search">
+                      </span>
                     </button>
                   </div>
                 </div>
               </div>
             </form>
-            <div class="panel panel-default" ng-show="searchResults.length">
+            <!-- <div class="panel panel-default" ng-show="! searchResults.length && searchTerm"
+            ng-cloak>
               <div class="panel-body">
-                {{ searchResults.length }}
-
+                No results found.
+              </div>
+            </div> -->
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="panel panel-default" ng-show="searchResults.length && ! showList" ng-cloak>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6" ng-click="zoomTo(searchResults[0])">
+                      <h3>
+                        {{ featuredResults[0].properties.common_nam }}
+                      </h3>
+                      <h4>
+                        {{ featuredResults[0].properties.address }}
+                      </h4>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                      <ul class="list-unstyled">
+                        <li ng-click="zoomTo(featuredResults[1])">
+                          <h4>
+                            {{ featuredResults[1].properties.common_nam }}
+                          </h4>
+                          <h5>
+                            {{ featuredResults[1].properties.address }}
+                          </h5>
+                        </li>
+                        <li ng-click="zoomTo(featuredResults[2])">
+                          <h4>
+                            {{ featuredResults[2].properties.common_nam }}
+                          </h4>
+                          <h5>
+                            {{ featuredResults[2].properties.address }}
+                          </h5>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12" ng-show="searchResults.length > 3" >
+                      <span class="badge" ng-click="showList = true">+{{ searchResults.length - 3 }} more</span>
+                      <a class="pull-right" ng-click="showList = true">
+                          <span class="glyphicon glyphicon-list"></span>
+                          List all results
+                        </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="row" ng-show="showList" ng-class="{ 'active': menu.active }">
+          <div class="col-xs-10 col-md-6 col-sm-6" role="navigation">
+            <a class="pull-right close-btn" ng-click="showList = false">
+              <span class="glyphicon glyphicon-remove-circle"></span>
+            </a>
+            <div class="list-group">
+              <a ng-click="zoomTo(result, $index)" ng-repeat="result in searchResults" class="list-group-item">
+                  <h4>{{ result.properties.common_nam }}</h4>
+                  <h5>{{ result.properties.address }}</h5>
+                </a>
+            </div>
+          </div>
+          <!--/span-->
+        </div>
+        <!--/row-->
       </div>
-      <div id="map"></div>
+      <!-- <div class="row row-offcanvas row-offcanvas-left active" ng-show="showList"
+      ng-class="{ 'active': menu.active }">
+          <div class="col-xs-10 col-md-6 col-sm-6 sidebar-offcanvas" role="navigation">
+            <div class="list-group">
+              <a ng-repeat="result in searchResults" class="list-group-item">
+                <h4>{{ result.properties.common_nam }}</h4>
+                <h5>{{ result.properties.address }}</h5>
+              </a>
+            </div>
+          </div><!--/span-->
     </div>
-    <div id="footer">
+    <!--/row-->
+    </div>
+    -->
+    <div id="map">
+    </div>
+    </div>
+    <footer>
       <div class="container">
-        <p class="pull-right">powered by data from <a href="http://civicapps.org">civicapps</a></p>
+        <p class="pull-right">
+          powered by data from
+          <a href="http://civicapps.org">civicapps</a>
+        </p>
       </div>
-    </div> 
+    </footer>
     <!-- /container -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
-    <script src='http://api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.js'></script>
-    <script src="app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js">
+    </script>
+    <script src='http://api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.js'>
+    </script>
+    <script src="app.js">
+    </script>
   </body>
 
 </html>
