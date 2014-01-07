@@ -18,7 +18,7 @@
             // }
 
             map.setView([feature.geometry.coordinates[1],
-                feature.geometry.coordinates[0]], 16);
+                feature.geometry.coordinates[0]], 18);
         };
 
         $scope.search = function (term) {

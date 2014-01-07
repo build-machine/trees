@@ -66,6 +66,10 @@ footer {
   font-size: 18px;
   padding: 10px;
 }
+[ng-cloak] {
+  display: none !important;
+}
+
 @media screen and (max-width: 767px) {
   .row-offcanvas {
     position: relative;

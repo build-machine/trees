@@ -14,7 +14,7 @@
     <link href='css/app.css' rel='stylesheet' />
   </head>
   <body>
-    <div class="app-wrapper" ng-controller="TreesCtrl">
+    <div class="app-wrapper" ng-controller="TreesCtrl" ng-cloak>
       <div class="container main-container">
         <div class="row">
           <div class="col-md-6 col-sm-8 col-xs-12">
@@ -90,7 +90,7 @@
             </div>
           </div>
         </div>
-        <div class="row" ng-show="showList" ng-class="{ 'active': menu.active }">
+        <div class="row" ng-show="showList" ng-class="{ 'active': menu.active }" ng-cloak>
           <div class="col-xs-10 col-md-6 col-sm-6" role="navigation">
             <a class="pull-right close-btn" ng-click="showList = false">
               <span class="glyphicon glyphicon-remove-circle"></span>
@@ -119,7 +119,7 @@
     </div>
     <!--/row-->
     </div>
-    -->
+    
     <div id="map">
     </div>
     </div>
